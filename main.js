@@ -6,10 +6,10 @@ const options = {
 	}
 };
 
-fetch('https://api-nba-v1.p.rapidapi.com/players?team=26&season=2021', options)
+/*fetch('https://api-nba-v1.p.rapidapi.com/players?team=26&season=2021', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
-	.catch(err => console.error(err));
+	.catch(err => console.error(err));*/
 
 fetch("https://api-nba-v1.p.rapidapi.com/players?team=26&season=2021", options)
   .then((response) => {
@@ -41,11 +41,47 @@ function displayPlayers(data) {
     <td>${r.firstname} </td>
     <td>${r.lastname}</td>
 </tr>`;
-console.log(tab)
     }
     // Setting innerHTML as tab variable
-    document.getElementById("players").innerHTML = tab;
+    document.getElementById("players").textContent = tab;
 }
+
+//games
+
+fetch("https://api-nba-v1.p.rapidapi.com/games?season=2022&team=26", options)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE NOT OK");
+    }
+  })
+  .then(function (gameData) {   
+    displayGames(gameData);
+  })
+  .catch((error) => {
+    console.error("FETCH ERROR:", error);
+  });
+
+function displayGames(gameData) {
+    let tab = 
+        `<tr>
+          <th>Home Team</th>
+          <th>Visitor Team</th>
+          <th>Final Score</th>
+         </tr>`;
+
+         console.log(gameData)
+    
+    // Loop to access all rows 
+    for (let r of gameData.response) {
+        tab += `<tr> 
+    <td>${0} </td>
+</tr>`;
+    }
+    // Setting innerHTML as tab variable
+    document.getElementById("games").innerHTML = tab;
+    }
 
 
  /* const player = data.response[0];
