@@ -44,7 +44,7 @@ function displayPlayers(data) {
     }
     console.log(data)
     // Setting innerHTML as tab variable
-    document.getElementById("players").textContent = tab;
+    document.getElementById("players").innerHTML = tab;
 }
 
 //games
