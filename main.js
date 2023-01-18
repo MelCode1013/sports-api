@@ -42,6 +42,7 @@ function displayPlayers(data) {
     <td>${r.lastname}</td>
 </tr>`;
     }
+    console.log(data)
     // Setting innerHTML as tab variable
     document.getElementById("players").textContent = tab;
 }
@@ -67,16 +68,22 @@ function displayGames(gameData) {
     let tab = 
         `<tr>
           <th>Home Team</th>
+          <th>Score</th>
           <th>Visitor Team</th>
-          <th>Final Score</th>
+          <th>Score</th>
          </tr>`;
 
          console.log(gameData)
     
     // Loop to access all rows 
     for (let r of gameData.response) {
+    
         tab += `<tr> 
-    <td>${0} </td>
+    <td>${r.teams.home.name} </td>
+        <td>${r.scores.home.points}</td>
+
+    <td>${r.teams.visitors.name} </td>
+    <td>${r.scores.visitors.points}</td>
 </tr>`;
     }
     // Setting innerHTML as tab variable
